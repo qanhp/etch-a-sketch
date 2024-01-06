@@ -100,3 +100,35 @@ const switchMode = function() {
 }
 
 mode_button.addEventListener('click', switchMode) 
+
+let size_button = document.querySelector('#grid');
+size_button.addEventListener('click', function() {
+    let grid_size = prompt("New Size: ");
+    grid_size = parseInt(grid_size);
+    grid_container.innerHTML='';
+    for (let i=0; i<grid_size; i++) {
+        let square1 = document.createElement('div');
+        square1.className = 'square';
+        square1.style.height = '50px';
+        square1.style.width = '50px';
+        square1.style.backgroundColor = 'white';
+        square1.style.border = '1px solid black';
+        square1.style.boxSizing = 'border-box';
+        grid_container.appendChild(square1);
+    
+        let width1 = square1.offsetWidth;
+        let newWidth1 = Math.sqrt(grid_size)*width1;
+        grid_container.style.maxWidth = newWidth1 + 'px';   
+        grid_container.style.minWidth = newWidth1 + 'px';   
+    }
+    let squareClass = document.querySelectorAll(".square");
+    squareClass.forEach(addClick);
+
+    let clear_button = document.querySelector('#clear');
+    clear_button.addEventListener('click', function() {
+    squareClass.forEach(clear);
+});
+
+});
+
+//TODO: Fix clear button so it works with new grid
